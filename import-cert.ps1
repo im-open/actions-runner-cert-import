@@ -11,8 +11,7 @@ Param(
 
 # validate
 if ($is_pfx_cert -and -not $cert_password) {
-    Write-Error "Password must be spefied for certs containing private key"
-    exit 1
+    Write-Error "Password must be spefied for certs containing private key" -ErrorAction Stop
 }
 
 try {
@@ -37,6 +36,5 @@ try {
 }
 catch {
     Write-Error "Error Importing Cert"
-    Write-Error $_
-    exit 1
+    Write-Error $_ -ErrorAction Stop
 }
