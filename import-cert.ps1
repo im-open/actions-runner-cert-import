@@ -10,7 +10,7 @@ Param(
 )
 
 # validate
-if ($is_pfx_cert -and $cert_args.Length -eq 0) {
+if ($is_pfx_cert -and -not $cert_password) {
     Write-Error "Password must be spefied for certs containing private key"
     exit 1
 }
