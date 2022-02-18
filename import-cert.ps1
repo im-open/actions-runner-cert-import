@@ -23,6 +23,10 @@ try {
 
     if ($is_pfx_cert) {
         $cert_args['Password'] = $cert_password
+
+        $str = $cert_args | Out-String
+        Write-Host $str -ForegroundColor Red
+
         Import-PfxCertificate @cert_args
     }
     else {
