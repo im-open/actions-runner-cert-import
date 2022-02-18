@@ -25,12 +25,12 @@ runs:
       shell: Powershell
       run: |
         $args = @{
-            cert_path '${{ inputs.cert-path }}' `
-            cert_store '${{ inputs.cert-store }}' `
-            is_pfx_cert $${{ inputs.is-pfx-cert }}
+            cert_path = '${{ inputs.cert-path }}'
+            cert_store = '${{ inputs.cert-store }}'
+            is_pfx_cert = $${{ inputs.is-pfx-cert }}
         }
         if( "${{ inputs.cert-password }}".Length -gt 0){
           $secure_password = ConvertTo-SecureString -String "${{ inputs.cert-password }}" -AsPlainText -Force
-          $ags['cert_password'] = $secure_password
+          $args['cert_password'] = $secure_password
         }
         ${{ github.action_path }}/import-cert.ps1 @args
