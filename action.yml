@@ -1,22 +1,36 @@
-name: 'Composite Run Steps Action Template'
+name: Actions Runner Cert Import
 
-description: 'Add description here'
+description: This action will import a certificate to a windows actions runner.
 
 inputs:
-  input-1:
-    description: 'Add a description here'
+  cert-path:
+    description: Import cert path, for example "./certs/cert.pfx"
     required: true
-
-outputs:
-  output-1:
-    description: 'Add description here'
-    value: '${{ steps.step_1.outputs.world }}'
+  cert-store:
+    description: Cert store import location, for example "Cert:\LocalMachine\My"
+    required: true
+  cert-password:
+    description: The key value to use if the cert is locked
+    required: false
+    default: ''
+  is-pfx-cert:
+    description: Specifies if a cert is contains a private key, expects true or false, if true, cert-password must be specified
+    required: false
+    default: 'false'
 
 runs:
   using: 'composite'
   steps:
-    - name: Step 1
-      id: step_1
-      shell: bash
+    - name: Import Cert
+      shell: Powershell
       run: |
-        echo "::set-output name=hello::world"
+        $args = @{
+            cert_path = '${{ inputs.cert-path }}'
+            cert_store = '${{ inputs.cert-store }}'
+            is_pfx_cert = $${{ inputs.is-pfx-cert }}
+        }
+        if( "${{ inputs.cert-password }}".Length -gt 0){
+          $secure_password = ConvertTo-SecureString -String "${{ inputs.cert-password }}" -AsPlainText -Force
+          $args['cert_password'] = $secure_password
+        }
+        ${{ github.action_path }}/import-cert.ps1 @args
