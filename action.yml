@@ -14,7 +14,7 @@ inputs:
     required: false
     default: ''
   is-pfx-cert:
-    description: Specifies if a cert is contains a private key, expects true or false, if true, cert-pass word must be specified
+    description: Specifies if a cert is contains a private key, expects true or false, if true, cert-password must be specified
     required: false
     default: 'false'
 
@@ -33,8 +33,4 @@ runs:
           $secure_password = ConvertTo-SecureString -String "${{ inputs.cert-password }}" -AsPlainText -Force
           $args['cert_password'] = $secure_password
         }
-
-        $str = $args | Out-String
-        Write-Host $str -ForegroundColor Red
-
         ${{ github.action_path }}/import-cert.ps1 @args

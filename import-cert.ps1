@@ -11,7 +11,7 @@ Param(
 
 # validate
 if ($is_pfx_cert -and -not $cert_password) {
-    Write-Error "Password must be spefied for certs containing private key" -ErrorAction Stop
+    Write-Error "Password must be specified for certs containing private key" -ErrorAction Stop
 }
 
 try {
@@ -22,10 +22,6 @@ try {
 
     if ($is_pfx_cert) {
         $cert_args['Password'] = $cert_password
-
-        $str = $cert_args | Out-String
-        Write-Host $str -ForegroundColor Red
-
         Import-PfxCertificate @cert_args
     }
     else {
