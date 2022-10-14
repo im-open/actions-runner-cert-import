@@ -22,7 +22,6 @@ This action will import a certificate to a windows actions runner.
 | `cert-password` | false       | The key value to use if the cert is locked                           |
 | `is-pfx-cert`   | false       | Specifies if a cert is contains a private key, expects true or false |
 
-
 ## Examples
 
 ### Simple
@@ -32,7 +31,7 @@ jobs:
   import-cert-on-runner:
     runs-on: [windows-2019]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Import Runner Cert
         uses: im-open/action-runner-cert-import@v1.0.0
@@ -48,7 +47,7 @@ jobs:
   import-cert-on-runner:
     runs-on: [windows-2019]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Import Runner Cert
         uses: im-open/action-runner-cert-import@v1.0.0
@@ -62,19 +61,20 @@ jobs:
 ## Contributing
 
 When creating new PRs please ensure:
+
 1. For major or minor changes, at least one of the commit messages contains the appropriate `+semver:` keywords listed under [Incrementing the Version](#incrementing-the-version).
-2. The `README.md` example has been updated with the new version.  See [Incrementing the Version](#incrementing-the-version).
+2. The `README.md` example has been updated with the new version. See [Incrementing the Version](#incrementing-the-version).
 3. The action code does not contain sensitive information.
 
 ### Incrementing the Version
 
-This action uses [git-version-lite] to examine commit messages to determine whether to perform a major, minor or patch increment on merge.  The following table provides the fragment that should be included in a commit message to active different increment strategies.
-| Increment Type | Commit Message Fragment                     |
+This action uses [git-version-lite] to examine commit messages to determine whether to perform a major, minor or patch increment on merge. The following table provides the fragment that should be included in a commit message to active different increment strategies.
+| Increment Type | Commit Message Fragment |
 | -------------- | ------------------------------------------- |
-| major          | +semver:breaking                            |
-| major          | +semver:major                               |
-| minor          | +semver:feature                             |
-| minor          | +semver:minor                               |
+| major | +semver:breaking |
+| major | +semver:major |
+| minor | +semver:feature |
+| minor | +semver:minor |
 | patch          | *default increment type, no comment needed* |
 
 ## Code of Conduct
