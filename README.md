@@ -34,7 +34,8 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Import Runner Cert
-        uses: im-open/action-runner-cert-import@v1.0.0
+        # You may also reference the major or major.minor version
+        uses: im-open/action-runner-cert-import@v1.0.2
         with:
           cert-path: './certs/cert.cer'
           cert-store: 'Cert:\LocalMachine\My'
@@ -50,7 +51,8 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Import Runner Cert
-        uses: im-open/action-runner-cert-import@v1.0.0
+        # You may also reference the major or major.minor version
+        uses: im-open/action-runner-cert-import@v1.0.2
         with:
           cert-path: './certs/cert.pfx'
           cert-store: 'Cert:\LocalMachine\Root'
