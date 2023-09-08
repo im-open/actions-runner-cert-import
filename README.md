@@ -1,3 +1,7 @@
+# DEPRECATED
+
+This action was deprecated on 2023-09-08 and will no longer receive support or updates.
+
 # Actions Runner Cert Import
 
 This action will import a certificate to a windows actions runner.
